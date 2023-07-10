@@ -21,11 +21,11 @@ function createTodos() {
 }
 
 function createFilters() {
-  const { subscribe, set, update } = writable({ search: '', filter: 'all' });
+  const { subscribe, set, update } = writable({ search: '', showAll: true });
 
   return {
     subscribe,
-    setFilter: (search, filter) => set({ search: search, filter: filter }),
+    setFilter: (search, showAll) => set({ search: search, showAll: showAll }),
   };
 }
 

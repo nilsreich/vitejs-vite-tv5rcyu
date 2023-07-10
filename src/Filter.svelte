@@ -1,18 +1,21 @@
 <script lang='ts'>
-import {filters} from './lib/store.ts'
-let value = ''
-let filter= 'all'
+  import { filters } from './lib/store';
 
-function updateFilter(){
-      if (value.trim() === '') return filters.setFilter('', filter);
-filters.setFilter(value, filter)
-}
+  let value = '';
+  let showAll = false;
+
+  function updateFilter() {
+    if (value.trim() === '') {
+      return filters.setFilter('', showAll);
+    }
+    filters.setFilter(value, showAll);
+  }
 </script>
 
-
-<form on:submit|preventDefault={updateFilter}>
-<input type='text' placeholder="Search..." bind:value={value}/>
-<select bind:value={filter}>
-<option value='completed'>completed</option>
-<option value='all'>all</option>
+<form on:change|preventDefault={updateFilter}>
+  <input type='text' placeholder="Search..." bind:value={value} />
+  <select bind:value={showAll}>
+    <option value={false}>completed</option>
+    <option value={true}>all</option>
+  </select>
 </form>
